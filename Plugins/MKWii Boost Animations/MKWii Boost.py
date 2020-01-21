@@ -60,5 +60,4 @@ def ReplaceMaterial(x):
                 return
     BrawlAPI.ShowMessage("No material with the name \"" + x + "\" exists", "Error")
 
-#main function
 ReplaceMaterial(BrawlAPI.UserStringInput("Boost Material Name"))
