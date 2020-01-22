@@ -6,3 +6,6 @@ The **BrawlCrate MKWii Animation Plugin** is a plugin for [BrawlCrate](https://g
 
 ## Usage
 Select an animation to add to your track from the plugin menu. When prompted, type the name of the material to replace with the selected animation.
+
+## Installation
+In BrawlCrate you can go into Tools > Settings > Updater > Manage Subscriptions and add the repo link to get automatic updates: https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin
