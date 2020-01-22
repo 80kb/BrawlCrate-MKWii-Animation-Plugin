@@ -93,6 +93,5 @@ def ReplaceMaterial(x):
     BrawlAPI.ShowMessage("No material with the name \"" + x + "\" exists", "Error")
 
 #main function
-input = BrawlAPI.UserStringInput("Material Name")
-if input != None:
+if BrawlAPI.UserStringInput("Material Name") != None:
     ReplaceMaterial(input)
