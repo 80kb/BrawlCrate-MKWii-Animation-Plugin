@@ -10,4 +10,4 @@ To create your own preset, select "New Preset" in the plugin menu. When prompted
 User created presets require all of the material's corresponding textures, shaders, and animations.
 
 ## Installation
-In BrawlCrate you can go into Tools > Settings > Updater > Manage Subscriptions and add the repo link to get automatic updates: https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin
+In BrawlCrate, under Tools > Settings > Updater > Manage Subscriptions you can add this repository's link to get automatic updates: https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin
