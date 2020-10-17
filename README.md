@@ -1,5 +1,7 @@
 # BrawlCrate MKWii Animation Plugin
 [![GitHub release](https://img.shields.io/github/release/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin.svg)](https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin/releases/latest)
+[![GPL Licensed](https://img.shields.io/github/license/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin)](https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin/blob/master/LICENSE)
+![Latest Commit](https://img.shields.io/github/last-commit/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin)
 
 The **BrawlCrate MKWii Animation Plugin** is a plugin for [BrawlCrate](https://github.com/soopercool101/BrawlCrate) that allows users to more quickly import texture animations to their MKWii Custom Track's Brres file.
 
