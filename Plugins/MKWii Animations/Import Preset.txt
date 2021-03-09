@@ -1,0 +1,102 @@
+__author__ = "BillyNoodles"
+__version__ = "2.0.0"
+
+from BrawlCrate.API import *
+from BrawlCrate.NodeWrappers import *
+from BrawlLib.SSBB.ResourceNodes import *
+
+from System.IO import Directory
+from System.IO import Path
+
+# TODO: Add proper error messages
+
+def import_animation(target):
+    brres = BrawlAPI.RootNode
+
+    # verify model exists
+    model_wrapper = None
+    model = None
+
+    for mdl in BrawlAPI.NodeWrapperListOfType[MDL0Wrapper]():
+        if mdl.Resource.Name == "course":
+            model_wrapper = mdl
+            model = mdl.Resource
+
+    # verify material exists
+    material = None
+
+    for mat in model.FindChildrenByType("/", ResourceType.MDL0Material):
+        if mat.Name == target:
+            material = mat
+
+    if material == None or model_wrapper == None or model == None:
+        return
+
+    ################
+    ### Clean Up ###
+    ################
+
+    for reference in material.GetChildrenRecursive():
+        # delete old textures
+        for texture in BrawlAPI.NodeListOfType[TEX0Node]():
+            if texture.Name == reference.Name:
+                texture.Remove(True)
+
+        # delete old mdl0 texture references
+        for mdl0_tex in BrawlAPI.NodeListOfType[MDL0TextureNode]():
+            if mdl0_tex.Name == reference.Name:
+                mdl0_tex.Remove()
+
+    # delete old animation
+    for srt in BrawlAPI.NodeListOfType[SRT0Node]():
+        for srt_subnode in srt.Children:
+            if srt_subnode.Name == material.Name:
+                srt.Remove()
+
+    #################
+    ### Importing ###
+    #################
+
+    for filename in Directory.GetFiles(preset_path):
+        # import textures
+        if filename.endswith(".tex0"):
+            node = NodeFactory.FromFile(None, filename)
+            brres.GetOrCreateFolder[TEX0Node]().AddChild(node)
+
+        # import material
+        if filename.endswith(".mdl0mat"):
+            material.Replace(filename)
+            material.Name = Path.GetFileNameWithoutExtension(filename)
+
+        # import shader and set material shader
+        if filename.endswith(".mdl0shade"):
+
+            # replace shader if only in use by target
+            if len(material.ShaderNode.Materials) == 1:
+                material.ShaderNode.Replace(filename)
+
+            # otherwise make a new shader
+            else:
+                shader = model_wrapper.NewShader()
+                shader.Replace(filename)
+
+                material.ShaderNode = shader
+
+        # import animation and rename material
+        if filename.endswith(".srt0"):
+            node = NodeFactory.FromFile(None, filename)
+            brres.GetOrCreateFolder[SRT0Node]().AddChild(node)
+
+if BrawlAPI.RootNode != None or BrawlAPI.RootNode.NodeType != BRRESNode:
+
+    # prompt for target material
+    target = BrawlAPI.UserStringInput("Material To Replace", "")
+    if target != None:
+
+        preset_name = ""
+        preset_path = Path.Combine(BrawlAPI.PluginPath, "MKWii Animations", preset_name)
+        import_animation(target)
+
+else:
+
+    BrawlAPI.ShowMessage("Please open a valid BRRES file", "")
