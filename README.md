@@ -4,11 +4,10 @@
 
 The **BrawlCrate MKWii Animation Plugin** is a plugin for [BrawlCrate](https://github.com/soopercool101/BrawlCrate) that allows users to more quickly import texture animations to their MKWii Custom Track's Brres file.
 
-## Usage
-Select an animation to add to your track from the plugin menu. When prompted, type the name of the material to replace with the selected animation.
-
-To create your own preset, select "New Preset" in the plugin menu. When prompted, type in your desired preset name. Then, type the name of the material to save as your preset. 
-User created presets require all of the material's corresponding textures, shaders, and animations.
+## Features
+* Store and manage SRT0 animations
+* Create new SRT0 presets from existing animations
+* Replace existing materials with preset SRT0 animations
 
 ## Installation
 In BrawlCrate, under Tools > Settings > Updater > Manage Subscriptions you can add this repository's link to install the plugin and get automatic updates: https://github.com/BillyNoodles/BrawlCrate-MKWii-Animation-Plugin
